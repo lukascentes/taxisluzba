@@ -8,6 +8,8 @@
                 <th scope="col">Meno</th>
                 <th scope="col">Priezvisko</th>
                 <th scope="col">Vek</th>
+                <th scope="col">Bydlisko</th>
+                <th scope="col">Prax</th>
                 <th scope="col">Akcia</th>
             </tr>
             </thead>
@@ -18,6 +20,8 @@
                         <td><?php echo $post->meno;?></td>
                         <td><?php echo $post->priezvisko;?></td>
                         <td><?php echo $post->vek;?></td>
+                        <td><?php echo $post->Bydlisko;?></td>
+                        <td><?php echo $post->prax_v_odbore_v_r;?></td>
                         <td>
                             <?php echo anchor('welcome/view', 'View',['class'=>'label label-primary']);?>
                             <?php echo anchor('welcome/update', 'Update',['class'=>'btn btn-success']);?>

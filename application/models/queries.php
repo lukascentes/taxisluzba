@@ -8,6 +8,10 @@ class queries extends CI_Model {
         }
 
     }
+
+    public function addPost($data){
+            return $this->db->insert('taxikári', $data);
+    }
 }
 
 

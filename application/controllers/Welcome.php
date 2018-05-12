@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+
         $this->load->model('queries');
         $posts = $this->queries->getPosts();
 		$this->load->view('welcome_message',['posts'=>$posts]);
@@ -27,6 +28,30 @@ class Welcome extends CI_Controller {
 
 	public function create() {
         $this->load->view('create');
+    }
+
+    public function save() {
+        $this->form_validation->set_rules('meno', 'Meno', 'required');
+        $this->form_validation->set_rules('priezvisko', 'Priezvisko', 'required');
+        $this->form_validation->set_rules('vek', 'Vek', 'required');
+        $this->form_validation->set_rules('Bydlisko', 'Bydlisko', 'required');
+        $this->form_validation->set_rules('prax_v_odbore_v_r', 'Prax', 'required');
+        if($this->form_validation->run()) {
+            $data = $this->input->post();
+           unset ($data['submit']);
+            $this->load->model('queries');
+            if( $this->queries->addPost($data)){
+                $this->session->set_flashdata('msg','Údaje úspešne uložené');
+            }
+            else {
+                $this->session->set_flashdata('msg','Údaje sa neuložili!');
+                }
+
+                return redirect('Welcome');
+        }
+        else {
+            $this ->load->view('create');
+        }
     }
 
 

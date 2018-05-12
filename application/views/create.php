@@ -1,23 +1,67 @@
 <?php include_once('header.php');?>
-<div class = "container">
-    <div class = form-horizontal>
-        <form>
-            <legend>Legend</legend>
+<form class = "container">
+
+
+        <div>
+            <?php echo form_open ('Welcome/save', ['class' =>'form-horizontal']);?>
+            <legend>Vložiť taxikára</legend>
             <div class="form-group">
-                <label for="imputEmail" class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-10">
-                    <input type="text" readonly="" class="form-control" id="inputEmail" placeholder="Email">
+                <label for="imputEmail" class="col-md-2 control-label">Meno</label>
+                <div class="col-md-3">
+
+                    <?php echo form_input(['name' => 'meno', 'placeholder' => 'Meno', 'class' => 'form-control']);?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="textArea" class="col-md-2 control-label">Priezvisko</label>
+                <div class="col-md-3">
+
+                    <?php echo form_input(['name' => 'priezvisko', 'placeholder' => 'Priezvisko', 'class' => 'form-control']);?>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+                <label for="imputEmail" class="col-md-2 control-label">Vek</label>
+                <div class="col-md-3">
+
+                    <?php echo form_input(['name' => 'vek', 'placeholder' => 'Vek', 'class' => 'form-control']);?>
                 </div>
             </div>
 
-            <fieldset class="form-group">
-                <div class = "col-lg-10 col-lg-offset-2">
-                    <button type = "reset" class="btn btn-default">Cancel</button>
-                    <button type = "submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="imputEmail" class="col-md-2 control-label">Bydlisko</label>
+                <div class="col-md-3">
+
+                    <?php echo form_input(['name' => 'bydlisko', 'placeholder' => 'Bydlisko', 'class' => 'form-control']);?>
                 </div>
-            </fieldset>
-        </form>
-    </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="imputEmail" class="col-md-2 control-label">Prax</label>
+                <div class="col-md-3">
+
+                    <?php echo form_input(['name' => 'prax', 'placeholder' => 'Prax', 'class' => 'form-control']);?>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class = "col-md-10 col-md-offset-2">
+                    <?php echo form_submit(['name'=>'submit', 'value'=>'Submit', 'class'=>'btn btn-default']);?>
+                    <?php echo anchor ('welcome','Back',['class=> btn btn-default']);?>
+                </div>
+                <div
+                        class="col-md-3"
+                </form>
+            </div>
+            <?php echo form_close();?>
+        </fieldset>
+
 <?php include_once('footer.php');?>
 
 
