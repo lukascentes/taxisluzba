@@ -53,15 +53,15 @@
             <div class="form-group">
                 <div class = "col-md-10 col-md-offset-2">
                     <?php echo form_submit(['name'=>'submit', 'value'=>'Submit', 'class'=>'btn btn-default']);?>
-                    <?php echo anchor ('welcome','Back',['class=> btn btn-default']);?>
+                    <?php echo anchor ('Welcome/','Back',['class=> btn btn-default']);?>
                 </div>
                 <div
                         class="col-md-3"
                 </form>
             </div>
             <?php echo form_close();?>
-        </fieldset>
+        </div>
 
 <?php include_once('footer.php');?>
 
-
+</form>
