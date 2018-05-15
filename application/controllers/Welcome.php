@@ -20,10 +20,8 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-
-
         $this->load->view('navigation');
-
+        $this->load->view('uvod');
 	}
 
     public function vlozjazdu() {
@@ -51,12 +49,34 @@ class Welcome extends CI_Controller {
         $this->load->model('queries');
         $posts = $this->queries->getPosts();
         $this->load->view('welcome_message',['posts'=>$posts]);
+        $this->load->view('pagination');
     }
     public function autaview() {
         $this->load->view('navigation');
         $this->load->model('auta');
-        $post = $this->auta->getPosts();
-        $this->load->view('autaview',['post'=>$post]);
+        $posts = $this->auta->getPosts();
+        $this->load->view('autaview',['posts'=>$posts]);
+        $this->load->view('pagination');
+    }
+
+    public function detailauta($ID) {
+        $this->load->view('navigation');
+        $this->load->model('auta');
+        $post = $this->auta->getSinglePosts($ID);
+        $this->load->view('autadetail',['post'=>$post]);
+    }
+    public function detailjazdy($ID) {
+        $this->load->view('navigation');
+        $this->load->model('jazdy');
+        $post = $this->jazdy->getSinglePosts($ID);
+        $this->load->view('jazdyddetail',['post'=>$post]);
+    }
+
+    public function detailsluzby($ID) {
+        $this->load->view('navigation');
+        $this->load->model('sluzby');
+        $post = $this->sluzby->getSinglePosts($ID);
+        $this->load->view('sluzbydetail',['post'=>$post]);
     }
 
     public function jazdaview() {
@@ -64,6 +84,7 @@ class Welcome extends CI_Controller {
         $this->load->model('jazdy');
         $post = $this->jazdy->getPosts();
         $this->load->view('jazdyview',['post'=>$post]);
+        $this->load->view('pagination');
     }
 
     public function sluzbaview() {
@@ -71,14 +92,74 @@ class Welcome extends CI_Controller {
         $this->load->model('sluzby');
         $post = $this->sluzby->getPosts();
         $this->load->view('sluzbyview',['post'=>$post]);
+        $this->load->view('pagination');
     }
 
-
-    public function update($id){
+    public function view($ID){
+        $this->load->view('navigation');
         $this->load->model('queries');
-        $post = $this->queries->getSinglePosts($id);
+        $post = $this->queries->getSinglePosts($ID);
+        $this->load->view('view',['post'=>$post]);
+        $this->load->view('pagination');
+    }
+
+    public function update($ID){
+        $this->load->view('navigation');
+        $this->load->model('queries');
+        $post = $this->queries->getSinglePosts($ID);
         $this->load->view('update',['post'=>$post]);
     }
+
+    public function updateauta($ID){
+        $this->load->view('navigation');
+        $this->load->model('auta');
+        $post = $this->auta->getSinglePosts($ID);
+        $this->load->view('updateauta',['post'=>$post]);
+    }
+
+    public function delete($ID){
+        $this->load->model('queries');
+        if($this->queries->deletePosts($ID)){
+            $this->session->set_flashdata('msg','Taxikár odstránený');
+        }
+        else{
+            $this->session->set_flashdata('msg','Taxikára sa nepodarilo odstrániť');
+        }
+        return redirect('welcome/taxikariview');
+    }
+
+    public function deleteauto($ID){
+        $this->load->model('auta');
+    if($this->auta->deletePosts($ID)){
+            $this->session->set_flashdata('msg','auto odstránené');
+        }
+        else{
+            $this->session->set_flashdata('msg','auto sa nepodarilo odstrániť');
+        }
+        return redirect('welcome/autaview');
+    }
+
+      public function deletejazda($ID){
+        $this->load->model('jazdy');
+        if($this->jazdy->deletePosts($ID)){
+            $this->session->set_flashdata('msg','Jazda odstránená');
+        }
+        else{
+            $this->session->set_flashdata('msg','Jazdu sa nepodarilo odstrániť');
+        }
+        return redirect('welcome/jazdaview');
+    }
+    public function deletesluzba($id){
+        $this->load->model('sluzby');
+        if($this->sluzby->deletePosts($id)){
+            $this->session->set_flashdata('msg','Služba odstránená');
+        }
+        else{
+            $this->session->set_flashdata('msg','Službu sa nepodarilo odstrániť');
+        }
+        return redirect('welcome/sluzbaview');
+    }
+
 
 
     public function save() {
@@ -108,9 +189,9 @@ class Welcome extends CI_Controller {
     public function saveauto() {
         $this->form_validation->set_rules('značka', 'Značka', 'required');
         $this->form_validation->set_rules('model', 'Model', 'required');
-        $this->form_validation->set_rules('rok_výroby', 'Rok Výroby', 'required');
+        $this->form_validation->set_rules('rok_výroby', 'Rok výroby', 'required');
         $this->form_validation->set_rules('farba', 'Farba', 'required');
-        $this->form_validation->set_rules('stav_odometra', 'Stav Odometra', 'required');
+        $this->form_validation->set_rules('stav_odometra', 'Stav ODO', 'required');
         if($this->form_validation->run()) {
             $data = $this->input->post();
             unset ($data['submit']);
@@ -175,7 +256,7 @@ class Welcome extends CI_Controller {
         }
     }
 
-    public function change($id) {
+    public function change($ID) {
 
        $this->form_validation->set_rules('meno', 'Meno', 'required');
         $this->form_validation->set_rules('priezvisko', 'Priezvisko', 'required');
@@ -186,7 +267,7 @@ class Welcome extends CI_Controller {
             $data = $this->input->post();
             unset ($data['submit']);
             $this->load->model('queries');
-            if( $this->queries->updatePost($data, $id)){
+            if( $this->queries->updatePost($data, $ID)){
                 $this->session->set_flashdata('msg','Údaje úspešne aktualizované');
             }
             else {
@@ -200,7 +281,30 @@ class Welcome extends CI_Controller {
         }
     }
 
+    public function changeauto($ID) {
 
+        $this->form_validation->set_rules('značka', 'Značka', 'required');
+        $this->form_validation->set_rules('model', 'Model', 'required');
+        $this->form_validation->set_rules('rok_výroby', 'Rok_výroby', 'required');
+        $this->form_validation->set_rules('farba', 'Farba', 'required');
+        $this->form_validation->set_rules('stav_odometra', 'Stav_odometra', 'required');
+        if($this->form_validation->run()) {
+            $data = $this->input->post();
+            unset ($data['submit']);
+            $this->load->model('auta');
+            if( $this->auta->updatePost($data, $ID)){
+                $this->session->set_flashdata('msg','Údaje úspešne aktualizované');
+            }
+            else {
+                $this->session->set_flashdata('msg','Údaje sa neaktualizovali!');
+            }
+
+            return redirect('welcome/autaview');
+        }
+        else {
+            $this ->load->view('vlozauto');
+        }
+    }
 
 
 

@@ -11,7 +11,7 @@ class auta extends CI_Model {
     }
 
     public function addPost($data){
-        return $this->db->insert('autá', $data);
+        return $this->db->insert('autá',$data);
     }
     public function getSinglePosts($ID) {
         $query = $this->db->get_where('autá', array('ID'=>$ID));
@@ -23,5 +23,8 @@ class auta extends CI_Model {
         return $this->db->where('ID',$ID)->update('autá', $data);
     }
 
-
+    public function deletePosts($ID){
+        return $this->db->delete('autá',['ID'=>$ID]);
+    }
 }
+?>

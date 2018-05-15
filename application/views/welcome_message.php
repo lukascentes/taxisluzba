@@ -29,10 +29,11 @@
                         <td><?php echo $post->vek;?></td>
                         <td><?php echo $post->Bydlisko;?></td>
                         <td><?php echo $post->prax_v_odbore_v_r;?></td>
+
                         <td>
-                            <?php echo anchor("welcome/view/{$post->id}", 'View',['class'=>'label label-primary']);?>
-                            <?php echo anchor("welcome/update/{$post->id}", 'Upraviť',['class'=>'btn btn-success']);?>
-                            <?php echo anchor("welcome/delete/{$post->id}", 'Delete',['class'=>'btn btn-danger']);?>
+                            <?php echo anchor("welcome/view/{$post->ID}", 'Detail',['class'=>'label label-primary']);?>
+                            <?php echo anchor("welcome/update/{$post->ID}", 'Upraviť',['class'=>'btn btn-success']);?>
+                            <?php echo anchor("welcome/delete/{$post->ID}", 'Vymazať',['class'=>'btn btn-danger']);?>
                         </td>
                     </tr>
     <?php endforeach;?>

@@ -1,6 +1,6 @@
 <?php include_once('header.php');?>
 <div class="container">
-    <h3>Autá</h3>
+    <h3>Služby</h3>
     <?php if ($msg=$this->session->flashdata('msg')):?>
         <?php echo $msg; ?>
     <?php endif;?>
@@ -27,9 +27,9 @@
                     <td><?php echo $post->stav_odo_začiatok;?></td>
                     <td><?php echo $post->stav_odo_koniec;?></td>
                     <td>
-                        <?php echo anchor("Welcome/view/{$post->ID}", 'View',['class'=>'label label-primary']);?>
-                        <?php echo anchor("Welcome/update/{$post->ID}", 'Update',['class'=>'btn btn-success']);?>
-                        <?php echo anchor("Welcome/delete/{$post->ID}", 'Delete',['class'=>'btn btn-danger']);?>
+                        <?php echo anchor("Welcome/detailsluzby/{$post->ID}", 'Detail',['class'=>'label label-primary']);?>
+                        <?php echo anchor("Welcome/update/{$post->ID}", 'Upraviť',['class'=>'btn btn-success']);?>
+                        <?php echo anchor("Welcome/deletesluzba/{$post->ID}", 'Vymazať',['class'=>'btn btn-danger']);?>
                     </td>
                 </tr>
             <?php endforeach;?>

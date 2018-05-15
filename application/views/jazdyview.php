@@ -21,9 +21,9 @@
                     <td><?php echo $post->počet_km;?></td>
 
                     <td>
-                        <?php echo anchor("Welcome/view/{$post->ID}", 'View',['class'=>'label label-primary']);?>
-                        <?php echo anchor("Welcome/update/{$post->ID}", 'Update',['class'=>'btn btn-success']);?>
-                        <?php echo anchor("Welcome/delete/{$post->ID}", 'Delete',['class'=>'btn btn-danger']);?>
+                        <?php echo anchor("Welcome/detailjazdy/{$post->ID}", 'Detail',['class'=>'label label-primary']);?>
+                        <?php echo anchor("Welcome/update/{$post->ID}", 'Upraviť',['class'=>'btn btn-success']);?>
+                        <?php echo anchor("Welcome/deletejazda/{$post->ID}", 'Vymazať',['class'=>'btn btn-danger']);?>
                     </td>
                 </tr>
             <?php endforeach;?>

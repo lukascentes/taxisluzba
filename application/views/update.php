@@ -1,6 +1,6 @@
 <?php include_once('header.php');?>
 <div class="container">
-        <?php echo form_open ("welcome/change/{$post->id}", ['class' =>'form-horizontal']);?>
+        <?php echo form_open ("welcome/change/{$post->ID}", ['class' =>'form-horizontal']);?>
     <fieldset>
         <legend>Upraviť záznam</legend>
         <div class="form-group">

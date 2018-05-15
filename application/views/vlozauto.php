@@ -1,6 +1,7 @@
 <?php include_once('header.php');?>
-<div class = "container">
-        <?php echo form_open ('Welcome/saveauto', ['class' =>'form-horizontal']);?>
+<div class="container">
+    <?php echo form_open('welcome/saveauto',['class'=>'form-horizontal']);?>
+
     <fieldset>
         <legend>Vložiť auto</legend>
         <div class="form-group">
@@ -12,6 +13,7 @@
             <div class="col-md-5">
                 <?php echo form_error('značka','<div class="text-danger">','</div>');?>
             </div>
+
         </div>
         <div class="form-group">
             <label for="inputEmail" class="col-md-2 control-label">Model</label>
@@ -38,10 +40,23 @@
         </div>
 
         <div class="form-group">
+            <label for="inputEmail" class="col-md-2 control-label">Farba</label>
+            <div class="col-md-3">
+
+                <?php echo form_input(['name' => 'farba', 'placeholder' => 'Farba', 'class' => 'form-control']);?>
+            </div>
+            <div class="col-md-5">
+                <?php echo form_error('farba','<div class="text-danger">','</div>');?>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
             <label for="inputEmail" class="col-md-2 control-label">Stav odometra</label>
             <div class="col-md-3">
 
-                <?php echo form_input(['name' => 'stav_odometra', 'placeholder' => 'Stav odometra', 'class' => 'form-control']);?>
+                <?php echo form_input(['name' => 'stav_odometra', 'placeholder' => 'Stav ODO', 'class' => 'form-control']);?>
             </div>
             <div class="col-md-5">
                 <?php echo form_error('stav_odometra','<div class="text-danger">','</div>');?>
@@ -51,7 +66,7 @@
 
 
         <div class="form-group">
-            <div class = "col-md-10 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-2">
                 <?php echo form_submit(['name'=>'submit', 'value'=>'Submit', 'class'=>'btn btn-default']);?>
                 <?php echo anchor ('Welcome/autaview','Back',['class=> btn btn-default']);?>
             </div>
@@ -61,3 +76,5 @@
 </div>
 
 <?php include_once('footer.php');?>
+
+

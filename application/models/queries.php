@@ -9,20 +9,24 @@ class queries extends CI_Model {
 
     }
 
+    public function deletePosts($ID){
+        return $this->db->delete('taxikári',['ID'=>$ID]);
+    }
+
     public function addPost($data){
             return $this->db->insert('taxikári', $data);
     }
 
-    public function getSinglePosts($id) {
-        $query = $this->db->get_where('taxikári', array('id'=>$id));
+    public function getSinglePosts($ID) {
+        $query = $this->db->get_where('taxikári', array('ID'=>$ID));
         if($query->num_rows() >0) {
             return $query->row();
         }
     }
 
 
-        public function updatePost($data, $id) {
-         return $this->db->where('id',$id)->update('taxikári', $data);
+        public function updatePost($data, $ID) {
+         return $this->db->where('ID',$ID)->update('taxikári', $data);
         }
 
 }

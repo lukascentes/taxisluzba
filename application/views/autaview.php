@@ -16,18 +16,17 @@
             </tr>
             </thead>
             <tbody>
-            <?php if(count($post)):?>
-                <?php foreach ($post as $post):?>
-                    <tr>
-                        <td><?php echo $post->značka;?></td>
+            <?php if(count($posts)):?>
+                <?php foreach ($posts as $post):?>
+                    <tr><td><?php echo $post->značka;?></td>
                         <td><?php echo $post->model;?></td>
                         <td><?php echo $post->rok_výroby;?></td>
                         <td><?php echo $post->farba;?></td>
                         <td><?php echo $post->stav_odometra;?></td>
                         <td>
-                            <?php echo anchor("Welcome/view/{$post->ID}", 'View',['class'=>'label label-primary']);?>
-                            <?php echo anchor("Welcome/update/{$post->ID}", 'Update',['class'=>'btn btn-success']);?>
-                            <?php echo anchor("Welcome/delete/{$post->ID}", 'Delete',['class'=>'btn btn-danger']);?>
+                            <?php echo anchor("Welcome/detailauta/{$post->ID}", 'Detail',['class'=>'label label-primary']);?>
+                            <?php echo anchor("Welcome/updateauta/{$post->ID}", 'Upraviť',['class'=>'btn btn-success']);?>
+                            <?php echo anchor("Welcome/deleteauto/{$post->ID}", 'Vymazať',['class'=>'btn btn-danger']);?>
                         </td>
                     </tr>
                 <?php endforeach;?>

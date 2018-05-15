@@ -24,6 +24,9 @@ class jazdy extends CI_Model {
         return $this->db->where('ID',$ID)->update('jazdy', $data);
     }
 
-
+    public function deletePosts($ID){
+        return $this->db->delete('jazdy',['ID'=>$ID]);
+    }
 
 }
+?>
