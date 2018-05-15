@@ -13,17 +13,16 @@ class queries extends CI_Model {
             return $this->db->insert('taxikári', $data);
     }
 
-    public function getSinglePosts($ID) {
-        $query = $this->db->get_where('taxikári', array('ID'=>$ID));
+    public function getSinglePosts($id) {
+        $query = $this->db->get_where('taxikári', array('id'=>$id));
         if($query->num_rows() >0) {
             return $query->row();
         }
     }
 
 
-        public function updatePost($data, $ID) {
-         return $this->db->where('ID',$ID)
-                      ->update('taxikári', $data);
+        public function updatePost($data, $id) {
+         return $this->db->where('id',$id)->update('taxikári', $data);
         }
 
 }

@@ -10,8 +10,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <link rel="stylesheet" type="text/css" href ="<?php echo base_url('assets/css/bootstrap.css');?>">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Taxislužba</a>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-    </div>
-</nav>
