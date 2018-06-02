@@ -19,6 +19,18 @@
                 <?php echo $post->počet_km;?>
             </div>
         </div>
+        <div class="form-group">
+            <label for="textArea" class="col-md-2 control label">Taxikár</label>
+            <div class="col-md-5">
+                <?php echo $post->meno . " " . $post->priezvisko;?>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="textArea" class="col-md-2 control label">Auto</label>
+            <div class="col-md-5">
+                <?php echo $post->značka . " " . $post->model;?>
+            </div>
+        </div>
 
         <?php echo anchor('welcome/jazdaview','Back', ['class'=>'btn btn-default']);?>
     </div>

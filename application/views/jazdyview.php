@@ -10,6 +10,8 @@
             <th scope="col">Začiatok</th>
             <th scope="col">Koniec</th>
             <th scope="col">Počet kilometrov</th>
+            <th scope="col">Taxikár</th>
+            <th scope="col">Auto</th>
         </tr>
         </thead>
         <tbody>
@@ -19,6 +21,8 @@
                     <td><?php echo $post->začiatok;?></td>
                     <td><?php echo $post->koniec;?></td>
                     <td><?php echo $post->počet_km;?></td>
+                    <td><?php echo $post->meno . " " . $post->priezvisko;?></td>
+                    <td><?php echo $post->značka . " " . $post->model;?></td>
 
                     <td>
                         <?php echo anchor("Welcome/detailjazdy/{$post->ID}", 'Detail',['class'=>'label label-primary']);?>

@@ -26,7 +26,11 @@ class Welcome extends CI_Controller {
 
     public function vlozjazdu() {
         $this->load->view('navigation');
-        $this->load->view('vlozjazdu');
+        $this->load->model('queries');
+        $this->load->model('auta');
+        $taxikari = $this->queries->getPosts();
+        $auta = $this->auta->getPosts();
+        $this->load->view('vlozjazdu',['taxikari'=>$taxikari, 'auta'=>$auta]);
 }
 
     public function vlozauto() {
@@ -125,7 +129,7 @@ class Welcome extends CI_Controller {
         else{
             $this->session->set_flashdata('msg','Taxikára sa nepodarilo odstrániť');
         }
-        return redirect('welcome/taxikariview');
+        redirect('welcome/taxikariview');
     }
 
     public function deleteauto($ID){
@@ -136,7 +140,7 @@ class Welcome extends CI_Controller {
         else{
             $this->session->set_flashdata('msg','auto sa nepodarilo odstrániť');
         }
-        return redirect('welcome/autaview');
+        redirect('welcome/autaview');
     }
 
       public function deletejazda($ID){
@@ -147,7 +151,7 @@ class Welcome extends CI_Controller {
         else{
             $this->session->set_flashdata('msg','Jazdu sa nepodarilo odstrániť');
         }
-        return redirect('welcome/jazdaview');
+        redirect('welcome/jazdaview');
     }
     public function deletesluzba($id){
         $this->load->model('sluzby');
@@ -157,7 +161,7 @@ class Welcome extends CI_Controller {
         else{
             $this->session->set_flashdata('msg','Službu sa nepodarilo odstrániť');
         }
-        return redirect('welcome/sluzbaview');
+        redirect('welcome/sluzbaview');
     }
 
 
@@ -170,16 +174,17 @@ class Welcome extends CI_Controller {
         $this->form_validation->set_rules('prax_v_odbore_v_r', 'Prax', 'required');
         if($this->form_validation->run()) {
             $data = $this->input->post();
-           unset ($data['submit']);
+            unset ($data['submit']);
+            unset ($data['0']);
             $this->load->model('queries');
-           if( $this->queries->addPost($data)){
+            if( $this->queries->addPost($data)){
                 $this->session->set_flashdata('msg','Údaje úspešne uložené');
             }
             else {
                 $this->session->set_flashdata('msg','Údaje sa neuložili!');
                 }
 
-                return redirect('welcome/taxikariview');
+                redirect('welcome/taxikariview');
         }
         else {
             $this ->load->view('create');
@@ -195,6 +200,7 @@ class Welcome extends CI_Controller {
         if($this->form_validation->run()) {
             $data = $this->input->post();
             unset ($data['submit']);
+            unset ($data['0']);
             $this->load->model('auta');
             if( $this->auta->addPost($data)){
                 $this->session->set_flashdata('msg','Údaje úspešne uložené');
@@ -203,7 +209,7 @@ class Welcome extends CI_Controller {
                 $this->session->set_flashdata('msg','Údaje sa neuložili!');
             }
 
-            return redirect('welcome/autaview');
+            redirect('welcome/autaview');
         }
         else {
             $this ->load->view('vlozauto');
@@ -215,7 +221,10 @@ class Welcome extends CI_Controller {
         $this->form_validation->set_rules('počet_km', 'Počet_KM', 'required');
         if($this->form_validation->run()) {
             $data = $this->input->post();
+
             unset ($data['submit']);
+            unset ($data['0']);
+
             $this->load->model('jazdy');
             if( $this->jazdy->addPost($data)){
                 $this->session->set_flashdata('msg','Údaje úspešne uložené');
@@ -224,7 +233,7 @@ class Welcome extends CI_Controller {
                 $this->session->set_flashdata('msg','Údaje sa neuložili!');
             }
 
-            return redirect('welcome/jazdyview');
+            redirect('welcome/jazdaview');
         }
         else {
             $this ->load->view('vlozjazdu');
@@ -241,15 +250,16 @@ class Welcome extends CI_Controller {
         if($this->form_validation->run()) {
             $data = $this->input->post();
             unset ($data['submit']);
+            unset ($data['0']);
             $this->load->model('sluzby');
-            if( $this->auta->addPost($data)){
+            if( $this->sluzby->addPost($data)){
                 $this->session->set_flashdata('msg','Údaje úspešne uložené');
             }
             else {
                 $this->session->set_flashdata('msg','Údaje sa neuložili!');
             }
 
-            return redirect('welcome/sluzbyview');
+            redirect('welcome/sluzbaview');
         }
         else {
             $this ->load->view('vlozsluzbu');
@@ -266,6 +276,7 @@ class Welcome extends CI_Controller {
         if($this->form_validation->run()) {
             $data = $this->input->post();
             unset ($data['submit']);
+            unset ($data['0']);
             $this->load->model('queries');
             if( $this->queries->updatePost($data, $ID)){
                 $this->session->set_flashdata('msg','Údaje úspešne aktualizované');
@@ -274,7 +285,7 @@ class Welcome extends CI_Controller {
                 $this->session->set_flashdata('msg','Údaje sa neaktualizovali!');
             }
 
-            return redirect('welcome/taxikariview');
+            redirect('welcome/taxikariview');
         }
         else {
             $this ->load->view('create');
@@ -291,6 +302,7 @@ class Welcome extends CI_Controller {
         if($this->form_validation->run()) {
             $data = $this->input->post();
             unset ($data['submit']);
+            unset ($data['0']);
             $this->load->model('auta');
             if( $this->auta->updatePost($data, $ID)){
                 $this->session->set_flashdata('msg','Údaje úspešne aktualizované');
@@ -299,7 +311,7 @@ class Welcome extends CI_Controller {
                 $this->session->set_flashdata('msg','Údaje sa neaktualizovali!');
             }
 
-            return redirect('welcome/autaview');
+            redirect('welcome/autaview');
         }
         else {
             $this ->load->view('vlozauto');

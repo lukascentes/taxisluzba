@@ -1,6 +1,5 @@
 <?php include_once('header.php');?>
-<form class = "container">
-
+<div class="container">
 
     <div>
         <?php echo form_open ('Welcome/savesluzba', ['class' =>'form-horizontal']);?>
@@ -60,13 +59,9 @@
                 <?php echo form_submit(['name'=>'submit', 'value'=>'Submit', 'class'=>'btn btn-default']);?>
                 <?php echo anchor ('Welcome/sluzbaview','Back',['class=> btn btn-default']);?>
             </div>
-            <div
-                class="col-md-3"
-</form>
-</div>
-<?php echo form_close();?>
+        </div>
+        <?php echo form_close();?>
+    </div>
 </div>
 
 <?php include_once('footer.php');?>
-
-</form>

@@ -4,6 +4,6 @@
     <hr class="my-4">
     <p>Obsahuje tabulky so všetkými potrebnými údajmi databázy</p>
     <p class="lead">
-        <a class="btn btn-primary btn-lg" href="taxikariview" role="button">Tabuľka TAXIKÁRI</a>
+        <a class="btn btn-primary btn-lg" href="<?= site_url("welcome/taxikariview"); ?>" role="button">Tabuľka TAXIKÁRI</a>
     </p>
 </div>

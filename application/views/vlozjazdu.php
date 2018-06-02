@@ -37,10 +37,30 @@
                 <?php echo form_error('počet_km','<div class="text-danger">','</div>');?>
             </div>
         </div>
+
+        <div class="form-group">
+            <label for="taxikari">Taxikár</label>
+            <select class="form-control" id="taxikari" name="ID_taxikári">
+                <?php foreach ($taxikari as $post): ?>
+                    <option value="<?= $post->ID ?>"><?= $post->meno . " " . $post->priezvisko ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="auta">Auto</label>
+            <select class="form-control" id="auta" name="ID_autá">
+                <?php foreach ($auta as $post): ?>
+                    <option value="<?= $post->ID ?>"><?= $post->značka . " " . $post->model ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+
         <div class="form-group">
             <div class="col-md-10 col-md-offset-2">
-                <?php echo form_submit(['name'=>'submit', 'value'=>'Submit', 'class'=>'btn btn-default']);?>
-                <?php echo anchor ('Welcome/jazdyview','Back',['class=> btn btn-default']);?>
+                <?php echo form_submit(['value'=>'Submit', 'class'=>'btn btn-default']);?>
+                <?php echo anchor ('welcome/jazdaview','Back',['class=> btn btn-default']);?>
             </div>
         </div>
     </fieldset>

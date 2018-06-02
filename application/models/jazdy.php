@@ -3,7 +3,10 @@
 class jazdy extends CI_Model {
 
     public function getPosts() {
-        $query = $this->db->get('jazdy');
+        $query = $this->db
+            ->join('autá', '`autá`.`ID` = `jazdy`.`ID_autá`')
+            ->join('taxikári', '`taxikári`.`ID` = `jazdy`.`ID_taxikári`')
+            ->get('jazdy');
         if($query -> num_rows() > 0) {
             return $query -> result();
         }
@@ -15,7 +18,10 @@ class jazdy extends CI_Model {
     }
 
     public function getSinglePosts($ID) {
-        $query = $this->db->get_where('jazdy', array('ID'=>$ID));
+        $query = $this->db
+            ->join('autá', '`autá`.`ID` = `jazdy`.`ID_autá`')
+            ->join('taxikári', '`taxikári`.`ID` = `jazdy`.`ID_taxikári`')
+            ->get_where('jazdy', array('jazdy.ID'=>$ID));
         if($query->num_rows() >0) {
             return $query->row();
         }
